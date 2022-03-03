@@ -53,7 +53,7 @@ public class ValidParentheses {
 				stack.push(parentheses);
 				System.out.println(parentheses);
 
-			} else if (stack.isEmpty() || (table.get(parentheses)).equals(stack.pop()))  {
+			} else if (stack.isEmpty() || (table.get(parentheses)).compareTo(stack.pop()) != 0)  {
 				System.out.println();
 				return false;
 			}
