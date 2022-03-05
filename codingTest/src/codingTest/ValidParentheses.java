@@ -8,7 +8,7 @@ public class ValidParentheses {
 
 	public static void main(String[] args) {
 		
-		System.out.println(isValid2("()"));
+		System.out.println(isValid1("()"));
 		
 	}
 	
@@ -27,7 +27,7 @@ public class ValidParentheses {
 			
 			if(!table.containsKey(parentheses)) {
 				stack.push(parentheses);				
-			} else if (stack.isEmpty() || (table.get(parentheses)).equals(stack.pop()))  {
+			} else if (stack.isEmpty() || !((table.get(parentheses)).equals(stack.pop())) )  {
 				return false;
 			}
 			
