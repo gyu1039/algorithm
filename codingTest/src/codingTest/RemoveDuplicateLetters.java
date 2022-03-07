@@ -12,7 +12,7 @@ public class RemoveDuplicateLetters {
 
 	public static void main(String[] args) {
 		
-		System.out.println(removeDuplicateLetters("bcabc"));
+		System.out.println(removeDuplicateLetters("cbacdcc"));
 	}
 	
 	
@@ -35,17 +35,16 @@ public class RemoveDuplicateLetters {
 		for(char c : var) {
 		
 			table.put(c, table.get(c) - 1);
-//			System.out.println("** "+c + ": " + table.get(c));
+			System.out.println("** "+c + ": " + table.get(c));
 			
 			if(set.contains(c)) continue;
 			
-			
-			while(!stack.isEmpty() && table.get(stack.peek()) > 0 && c < stack.peek()) {
-			//	System.out.println(stack.peek() + ": " + table.get(stack.peek()));
+			while(!stack.isEmpty() && table.get(stack.peek()) > 0 && stack.peek() > c) {
+				System.out.println(stack.peek() + ": " + table.get(stack.peek()));
 				set.remove(stack.pop());
 				
 			}
-			stack.add(c);
+			stack.push(c);
 			set.add(c);
 			
 		}
