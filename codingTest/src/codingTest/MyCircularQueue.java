@@ -2,18 +2,18 @@ package codingTest;
 
 public class MyCircularQueue {
 	
-	int[] array;
+	int[] queue;
 	int front, rear = -1;
 	int len;
 
 	public MyCircularQueue(int k) {
-		array = new int[k];
+		queue = new int[k];
     }
     
     public boolean enQueue(int value) {
     	if(!isFull()) {
-    		rear = (rear + 1) % array.length;
-    		array[rear] = value;
+    		rear = (rear + 1) % queue.length;
+    		queue[rear] = value;
     		len++;
     		return true;
     	} else return false;
@@ -22,7 +22,7 @@ public class MyCircularQueue {
     
     public boolean deQueue() {
     	if(!isEmpty()) {
-    		front = (front + 1) % array.length;
+    		front = (front + 1) % queue.length;
     		len--;
     		return true;
     	} else return false;
@@ -30,14 +30,14 @@ public class MyCircularQueue {
     
     public int Front() {
         if(!isEmpty()) {
-        	return array[front];
+        	return queue[front];
         } else return -1;
     	
     }
     
     public int Rear() {
     	if(!isEmpty()) {
-    		return array[rear];
+    		return queue[rear];
     	} else return -1;
         
     }
@@ -47,6 +47,6 @@ public class MyCircularQueue {
     }
     
     public boolean isFull() {
-        return len == array.length;	
+        return len == queue.length;	
     }
 }
