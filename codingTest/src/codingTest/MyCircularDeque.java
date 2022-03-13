@@ -61,7 +61,7 @@ public class MyCircularDeque {
     		return false;
     	}
     	
-    	rear = (rear + 1) & deque.length;
+    	rear = (rear + 1) % deque.length;
     	len = len - 1;
     	
     	return true;
@@ -99,7 +99,8 @@ public class MyCircularDeque {
     	d.insertFront(23);
     	d.insertFront(23);
     	d.insertFront(82);
-    	d.insertFront(45);
+    	
+    	d.insertFront(45);			// 4 - 45 3 - 82 2 - 23 1: 23 0:19 76:
     	System.out.println(d.front);
     	System.out.println(d.rear);
     	d.deleteLast();
@@ -129,31 +130,31 @@ public class MyCircularDeque {
     	System.out.println("원소 갯수 : " + d.len);
     	System.out.println();
     	d.deleteLast();
-    	System.out.println("삭제 후 1. rear: " + d.rear);
+    	System.out.println("첫번째  삭제 후  rear: " + d.rear);
     	System.out.println("원소 갯수 : " + d.len);
     	System.out.println();
     	d.deleteLast();
-    	System.out.println("2. rear: " + d.rear);
+    	System.out.println("두 번째 rear: " + d.rear);
     	System.out.println("원소 갯수 : " + d.len);
     	System.out.println();
     	d.deleteLast();
-    	System.out.println("3. rear: " + d.rear);
+    	System.out.println("세 번째 rear: " + d.rear);
     	System.out.println("원소 갯수 : " + d.len);
     	System.out.println();
     	d.deleteLast();
-    	System.out.println("4. rear: " + d.rear);
+    	System.out.println("네 번째 rear: " + d.rear);
     	System.out.println("원소 갯수 : " + d.len);
     	System.out.println();
     	d.deleteLast();
-    	System.out.println("5. rear: " + d.rear);
+    	System.out.println("다섯 번째 rear: " + d.rear);
     	System.out.println("원소 갯수 : " + d.len);
     	System.out.println();
     	d.deleteLast();
-    	System.out.println("6. rear: " + d.rear);
+    	System.out.println("여섯 번째 rear: " + d.rear);
     	System.out.println("원소 갯수 : " + d.len);
     	System.out.println();
     	d.deleteLast();
-    	System.out.println("7. rear: " + d.rear);
+    	System.out.println("일곱 번째 rear: " + d.rear);
     	System.out.println("원소 갯수 : " + d.len);
     	System.out.println();
     	
