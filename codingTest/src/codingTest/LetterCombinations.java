@@ -13,7 +13,7 @@ public class LetterCombinations {
     
 	public List<String> letterCombinations(String digits) {
 		
-        if(digits == null || digits.equals("")) return new ArrayList<>();
+        if(digits == null || digits.length() == 0) return new ArrayList<>();
         
         this.digits = digits;
         
