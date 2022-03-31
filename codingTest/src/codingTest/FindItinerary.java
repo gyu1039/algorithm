@@ -53,7 +53,7 @@ public class FindItinerary {
 		param.add(new ArrayList<>(Arrays.asList("SFO", "SJC")));
 		param.add(new ArrayList<>(Arrays.asList("LHR", "SFO")));
 		
-		test.findItinerary(param);
+		System.out.println(test.findItinerary(param));
 		
 	}
 
