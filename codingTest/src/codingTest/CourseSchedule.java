@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class CanFinish {
+public class CourseSchedule {
 
 	public boolean canFinish(int numCourses, int[][] prerequisites) {
         
@@ -19,7 +19,7 @@ public class CanFinish {
 			
 			int key = a[0];
 			int value = a[1];
-			if(!graph.containsKey(a[0])) {
+			if(!graph.containsKey(key)) {
 				graph.put(key, new ArrayList<>());
 			} 
 			graph.get(key).add(value);
