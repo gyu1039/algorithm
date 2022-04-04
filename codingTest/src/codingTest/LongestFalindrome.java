@@ -10,7 +10,7 @@ public class LongestFalindrome {
 
 	}
 
-public String longestPalindrome(String s) {
+	public String longestPalindrome(String s) {
 		
 	    if (s == null || s.length() < 1) return "";
 	    int start = 0, end = 0;
