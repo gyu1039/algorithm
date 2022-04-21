@@ -1,40 +1,38 @@
 package codingTest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
 
-int i = 0;
+	Map<Integer, Integer> map;
+	int i;
 	
 	public TreeNode buildTree(int[] preorder, int[] inorder) {
-
-		if(inorder != null && inorder.length != 0) {
-			
-			int index = findIndex(inorder, preorder[i++]);
-			
-			TreeNode node = new TreeNode(inorder[index]);
-			
-			node.left = buildTree(preorder, Arrays.copyOfRange(inorder, 0, index));
-			node.right = buildTree(preorder, Arrays.copyOfRange(inorder, index + 1, inorder.length));
-					
-					
-			return node;
+		
+		map = new HashMap<>();
+		
+		int size = inorder.length;
+		for(int i = 0; i<size; i++) {
+			map.put(inorder[i], i);
 		}
 		
-		return null;
-    }
-	
-	public int findIndex(int[] array, int value) {
-		
-		int index = array.length;
-		for(int i=0; i < index; i++) {
-			if(array[i] == value) return i;
-		}
-		
-		return -1;
+		return helper(preorder, inorder, 0, size - 1, size);
 	}
-	
-	
+
+	public TreeNode helper(int[] preorder, int[] inorder, int inStart, int inEnd, int inCount) {
+
+		TreeNode node = null;
+		
+		if(i < preorder.length && inStart <= inEnd && inCount > 0) {
+			int index = map.get(preorder[i]);
+			
+			node = new TreeNode(preorder[i++]);
+			
+			node.left = helper(preorder, inorder, inStart, index - 1, (index - 1) - inStart + 1);
+			node.right = helper(preorder, inorder, index + 1, inEnd, inEnd - inStart + 1);
+		}
+		
+		return node;
+	}
 }
