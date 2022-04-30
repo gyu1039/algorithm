@@ -28,4 +28,41 @@ public class SortList {
 		return head;
 	}
 	
+	public ListNode sortList2(ListNode head) {
+		
+		if(head == null || head.next == null) {
+			return head;
+		}
+		
+		ListNode half = null;
+		ListNode slow = head;
+		ListNode fast = head;
+		
+		while(fast != null && fast.next != null) {
+			half = slow;
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		half.next = null;
+		
+		ListNode l1 = sortList2(head);
+		ListNode l2 = sortList2(slow);
+		
+		return mergeTwoLists(l1, l2);
+	}
+	
+	public ListNode mergeTwoLists(ListNode n1, ListNode n2) {
+		
+		if(n1 != null && n2 != null) {
+			if(n1.val > n2.val) {
+				ListNode tmp = n1;
+				n1 = n2;
+				n2 = tmp;
+			}
+			n1.next = mergeTwoLists(n1.next, n2);
+		}
+		 
+		return n1 != null ? n1 : n2;
+	}
+	
 }
