@@ -7,10 +7,10 @@ public class MinimumWIndowSubstring {
 
 	public String minWindow(String s, String t) {
 
-		if(s==null || t==null || s.isEmpty() || t.isEmpty()) return "";
 
 		int sLen = s.length();
 		int tLen = t.length();
+		if(sLen < tLen) return "";
 
 		Map<Character, Integer> map = new HashMap<>();
 		for(int i=0; i<tLen; i++) {
@@ -52,3 +52,5 @@ public class MinimumWIndowSubstring {
 		return !found ? "" : s.substring(left - 1, right);
 	}
 }
+
+//
