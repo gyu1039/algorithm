@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ReceiveReportResults {
 
@@ -16,19 +15,13 @@ public class ReceiveReportResults {
 
 		int[] answer = new int[id_list.length];
 
-		// 편리하게 count 하려고 만든 변수
-		Map<String, Integer> result = new HashMap<String, Integer>();
-
-		// 신고한 ID
+		Map<String, Integer> c = new HashMap<String, Integer>();
 		Map<String, Set<String>> reportedIdSet = new HashMap<>();
 
 		for(String id : report) {
 			String[] t = id.split(" ");
 			String reporter = t[0];
 			String reported = t[1];
-
-			if(result.get(reporter) == null) result.put(reporter, Integer.valueOf(0));
-
 
 			// 신고 당한 사람 - 신고한 사람
 			if(reportedIdSet.get(reported) == null) reportedIdSet.put(reported, new HashSet<>());
@@ -38,15 +31,15 @@ public class ReceiveReportResults {
 		for(String id : id_list) {
 			if(reportedIdSet.get(id) != null && reportedIdSet.get(id).size() >= k) {
 				for(String s : reportedIdSet.get(id)) {
-					result.put(s, result.get(s) + 1);
+					c.put(s, c.getOrDefault(s, 0) + 1);
 				}
 			}
 		}
 
 		int i =0;
 		for(String id : id_list) {
-			if(result.get(id) != null)
-				answer[i++] = result.get(id);
+			if(c.get(id) != null)
+				answer[i++] = c.get(id);
 			else answer[i++] = 0;
 		}
 
@@ -71,12 +64,14 @@ public class ReceiveReportResults {
 	
 	public static void main(String[] args) {
 		
-		String[] idList = new String[]{"muzi","frodo","apeach", "neo"};
-		String[] report = new String[]{"muzi frodo","apeach frodo","muzi frodo","muzi frodo","muzi frodos"};
+		String[] idList = new String[]{"a","frodo"};
+		String[] report = new String[]{"abc frodo"};
 		
-		List<String> list = Arrays.stream(report).collect(Collectors.toList());
-		list.stream().filter(s -> s.startsWith(s + " ")).collect(Collectors.toList())
-			.forEach(System.out::println);
+		Arrays.stream(idList).map(_user -> {
+			return Arrays.stream(report).filter(s -> s.startsWith(_user)).collect(Collectors.toList());
+			
+		}).forEach(System.out::println);
+		
 		
 		
 		
