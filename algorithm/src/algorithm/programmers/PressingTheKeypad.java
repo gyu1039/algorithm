@@ -18,7 +18,6 @@ public class PressingTheKeypad {
 	int[] leftPos = {-1, 0};
 	int[] rightPos = {1, 0};
 	
-	
 	public String solution(int[] numbers, String hand) {
 
 		StringBuilder sb = new StringBuilder();
