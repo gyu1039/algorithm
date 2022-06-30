@@ -12,26 +12,37 @@ public class FailureRate {
 	public static int[] solution(int N, int[] stages) {
         
 		Map<Integer, Double> rate = new HashMap<>();
-        int[] answer = new int[N];
+		Map<Integer, Integer> table = new HashMap<>(N);
+        
+		int[] answer = new int[N];
+
+		Arrays.sort(stages);
 		
-        Arrays.sort(stages);
+		int tCnt = 0;
+		int tIdx = 0;
+		
+        for(int i=1; i<=N; i++) {
+        	
+        	for(int j=tIdx; j<stages.length; j++) {
+        		
+        		if(stages[j] != i) {
+        			break;
+        		}
+        		tCnt++;
+        	}
+        	
+        	table.put(i, tCnt);
+        	tIdx += tCnt;
+        	tCnt=0;
+        }
         
         int sLen = stages.length;
-        int idx = 0;
         
         for(int i=1; i<=N; i++) {
         	
-        	if(stages[idx] != i) {
-        		rate.put(i, 0.0);
-        		idx++;
-        		continue;
-        	}
-        	
-        	int cnt = theNumberOfN(stages[idx], stages);
-        	rate.put(i, cnt / (double)sLen);
-        	idx += cnt;
+        	int cnt = table.get(i);
+        	rate.put(i, cnt / (double) sLen);
         	sLen -= cnt;
-        	
         }
 
         Comparator<Entry<Integer, Double>> comparator = new Comparator<Entry<Integer, Double>>() {
@@ -53,18 +64,6 @@ public class FailureRate {
         return answer;
     }
 	
-	public static int theNumberOfN(int n, int[] ar) {
-			
-		int ret = 0;
-		
-		for(int c : ar) {
-			if(c == n) {
-				ret++;
-				continue;
-			}
-		}
-		return ret;
-	}
 	
 	
 	public static void main(String[] args) {
