@@ -65,6 +65,49 @@ public class FailureRate {
     }
 	
 	
+	public int[] solution2(int N, int[] stages) {
+		
+		int[] answer = new int[N];
+		int arrLen = stages.length;
+		
+		for(int i=0; i<arrLen; i++) {
+			int stage = stages[i];
+			if(stage != N + 1) {
+				answer[stage - 1] += 1;
+			}
+		}
+		
+		double[] rateArray = new double[N];
+		int remainingNumber = arrLen;
+		
+		for(int i=0; i<N; i++) {
+			int personNum = answer[i];
+			rateArray[i] = (double) personNum / remainingNumber;
+			remainingNumber -= personNum;
+			answer[i] = i + 1;
+		}
+		
+		double tmpD = 0;
+		int tmpI = 0; 
+		
+		for(int i=0; i<N; i++) {
+			for(int j=1; j<N-i; j++) {
+				
+				if(rateArray[j - 1] < rateArray[j]) {
+					
+					tmpD = rateArray[j - 1];
+					rateArray[j - 1] = rateArray[j];
+					rateArray[j] = tmpD;
+					
+					tmpI = answer[j - 1];
+					answer[j - 1] = answer[j];
+					answer[j] = tmpI;
+				}
+			}
+		}
+		
+		return answer;
+	}
 	
 	public static void main(String[] args) {
 		
