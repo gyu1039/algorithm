@@ -7,6 +7,15 @@ import java.util.Arrays;
 
 public class NumberCardGame {
 
+	BufferedReader br;
+	
+	public NumberCardGame() {}
+	
+	public NumberCardGame(BufferedReader br) {
+		this.br = br;
+	}
+	
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -14,11 +23,11 @@ public class NumberCardGame {
 		int row = Integer.parseInt(t[0]);
 		int col = Integer.parseInt(t[1]);
 		
-		NumberCardGame ncg = new NumberCardGame();
+		NumberCardGame ncg = new NumberCardGame(br);
 		
 		int result = 0;
 		for(int i=0; i<row; i++) {
-			int min = ncg.getMinNumber(col, br) ;
+			int min = ncg.getMinNumber(col) ;
 			result = result > min ? result : min;
 		}
 		
@@ -27,15 +36,15 @@ public class NumberCardGame {
 		br.close();
 	}
 	
-	public int getMinNumber(int col, BufferedReader br) throws IOException {
+	public int getMinNumber(int col) throws IOException {
 		
-		int[] a = is(col, br);
+		int[] a = is(col);
 		Arrays.sort(a);
 		
 		return a[0];
 	}
 	
-	public int[] is(int col, BufferedReader br) throws IOException {
+	public int[] is(int col) throws IOException {
 		
 		String[] t = br.readLine().split(" ");
 		
