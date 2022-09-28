@@ -12,11 +12,18 @@ public class _17298 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		
+		way2();
+		
+	}
+	
+	public static void way1() throws NumberFormatException, IOException {
+		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		int A = Integer.parseInt(br.readLine());
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
+		
 		int[] arr = new int[A];
 		for(int i=0; i<A; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
@@ -43,6 +50,45 @@ public class _17298 {
 		
 		bw.write("\n");
 		bw.flush();
+	}
+	
+	public static void way2() throws NumberFormatException, IOException {
+	
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		int N = Integer.parseInt(br.readLine());
+		String[] s = br.readLine().split(" ");
+		
+		Stack<Integer> ansStack = new Stack<Integer>();
+		Stack<Integer> tmpStack = new Stack<Integer>();
+
+		for(int i=N-1; i>=0; i--) {
+			
+			int cur = Integer.parseInt(s[i]);
+
+			while(!tmpStack.isEmpty()) {
+				if(tmpStack.peek() > cur) {
+					ansStack.add(tmpStack.peek());
+					break;
+				} else {
+					tmpStack.pop();
+				}
+			}
+			
+			if(tmpStack.isEmpty()) {
+				ansStack.add(-1);
+			}
+			
+			tmpStack.add(cur);
+		}
+		
+		while(!ansStack.isEmpty()) {
+			bw.write(ansStack.pop() + " ");
+		}
+		
+		bw.flush();
+		bw.close();
+		
 	}
 
 }
