@@ -8,10 +8,9 @@ public class _2193 {
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 
-//		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//		int N = Integer.parseInt(br.readLine());
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
 		
-		int N = 1;
 		long[] dp = new long[N+2];
 		dp[1] = 1;
 		dp[2] = 1;
