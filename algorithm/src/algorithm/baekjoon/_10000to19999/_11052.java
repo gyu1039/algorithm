@@ -21,24 +21,14 @@ public class _11052 {
 		}
 		
 		int[] dp = new int[N+1];
-		int count = N;
-		/* 
-		 * 4 
-		 * 1 5 6 7 -> 10
-		 * 
-		 * */
-		for(int i=1; i<=N; i++) {
 		
-			if(i % N == 0) {
-				dp[i] = (N / i) * price[i];
-			}
+		for(int i=1; i<=N; i++) {
 			
-			while(count != 0) {
-				
-				
+			for(int j=1; j<=i; j++) {
+				dp[i] = Math.max(dp[i], price[j] + dp[i-j]);
 			}
 		}
 		
-		
+		System.out.println(dp[N]);
 	}
 }
