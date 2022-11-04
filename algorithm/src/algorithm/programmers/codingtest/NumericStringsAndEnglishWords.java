@@ -1,4 +1,4 @@
-package algorithm.programmers;
+package algorithm.programmers.codingtest;
 
 import java.util.HashMap;
 import java.util.Map;

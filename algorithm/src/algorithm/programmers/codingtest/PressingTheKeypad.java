@@ -1,4 +1,4 @@
-package algorithm.programmers;
+package algorithm.programmers.codingtest;
 
 public class PressingTheKeypad {
 
