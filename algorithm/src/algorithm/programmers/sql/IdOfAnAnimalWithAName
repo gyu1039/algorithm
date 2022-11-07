@@ -1,0 +1,3 @@
+
+SELECT animal_ID FROM animal_ins WHERE name is not null;
+
