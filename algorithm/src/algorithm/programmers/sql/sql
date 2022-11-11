@@ -1,0 +1,15 @@
+FindTheNumberOfMembersWithoutAgeInformation
+	- SELECT count(*) as "USERS" FROM user_info WHERE age is null;
+
+IdOfAnAnimalWithAName
+	- SELECT animal_ID FROM animal_ins WHERE name is not null;
+
+IdOfAnUnnamedAnimal
+	- SELECT animal_id FROM animal_ins WHERE name is null ORDER BY animal_id;
+
+OutputOfTheListOfProductionPlantsLocatedInX
+	- SELECT factory_id, factory_name, address FROM food_factory WHERE address Like '강원도%' ORDER BY factory_id;
+	
+PrintOutTheListOfFoodWarehousesLocatedInX
+	- SELECT warehouse_id, warehouse_name, address ,if(isnull(freezer_yn), 'N', freezer_yn)
+    FROM food_warehouse where address Like '경기%' ORDER BY warehouse_id
