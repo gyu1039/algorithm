@@ -21,5 +21,8 @@ PrintOutAListOfCardiothoracicSurgeonsOrGeneralSurgeons
 GettingTheMostExpensiveProduct
 	- SELECT max(price) as "MAX_PRICE" FROM product;
 	
+FindTheNumberOfMembersThatMeetTheRequirements
+	- SELECT count(*) FROM user_info WHERE (age between 20 and 29) and year(joined) = 2021;
+
 
 		

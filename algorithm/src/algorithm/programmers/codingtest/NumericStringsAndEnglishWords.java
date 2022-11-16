@@ -21,9 +21,9 @@ public class NumericStringsAndEnglishWords {
 		table.put("eight", 8);
 		table.put("nine", 9);
 
-		for(String numericNumber : table.keySet()) {
-			if(s.contains(numericNumber)) {
-				s= s.replaceAll(numericNumber, table.get(numericNumber) + "");
+		for(String number : table.keySet()) {
+			if(s.contains(number)) {
+				s= s.replaceAll(number, table.get(number) + "");
 			}
 		}
 		
