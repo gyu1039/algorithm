@@ -4,76 +4,70 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class _11724 {
+public class _24446 {
 
 	static List<Integer>[] graph;
-	static boolean[] visited;
+	static int[] depthOfNth; 
 
 	public static void main(String[] args) throws IOException {
-
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
+
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
+		int R = Integer.parseInt(st.nextToken());
 
 		graph = new ArrayList[N+1];
-		visited = new boolean[N+1];
+		depthOfNth = new int[N+1];
+
+		Arrays.fill(depthOfNth, -1);
 
 		for(int i=1; i<=N; i++) {
 			graph[i] = new ArrayList<>();
 		}
 
-
-		for(int i=0; i<M; i++) {
+		while(M-- > 0) {
 			st = new StringTokenizer(br.readLine());
 			int u = Integer.parseInt(st.nextToken());
 			int v = Integer.parseInt(st.nextToken());
 
-			graph[v].add(u);
 			graph[u].add(v);
+			graph[v].add(u);
 		}
 
-		br.close();
+		bfs(R);
 
-		int result = 0;
+		StringBuilder sb = new StringBuilder();
 		for(int i=1; i<=N; i++) {
-			
-			if(!visited[i]) {
-				result += bfs(i);
-			}
+			sb.append(depthOfNth[i]).append("\n");
 		}
-		
 
-		System.out.println(result);
+		System.out.println(sb);
 	}
 
-	private static int bfs(int n) {
+	private static void bfs(int r) {
 
+		depthOfNth[r] = 0;
 		Queue<Integer> q = new LinkedList<>();
-		q.add(n); 
-		visited[n] = true;
-		
+		q.add(r);
+
 		while(q.size() > 0) {
-			
+
 			int e = q.poll();
 			
 			for(int x : graph[e]) {
-				
-				if(!visited[x]) {
-					visited[x] = true;
+				if(depthOfNth[x] == -1) {
+					depthOfNth[x] = depthOfNth[e] + 1;
 					q.add(x);
 				}
+
 			}
 		}
-		
-		
-		return 1;
 	}
-
-
 }

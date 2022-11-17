@@ -24,5 +24,8 @@ GettingTheMostExpensiveProduct
 FindTheNumberOfMembersThatMeetTheRequirements
 	- SELECT count(*) FROM user_info WHERE (age between 20 and 29) and year(joined) = 2021;
 
-
+PopularIceCream
+	- SELECT flavor FROM first_half ORDER BY total_order desc, shipment_id;
+	
+	
 		
