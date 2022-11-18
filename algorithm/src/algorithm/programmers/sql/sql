@@ -27,5 +27,11 @@ FindTheNumberOfMembersThatMeetTheRequirements
 PopularIceCream
 	- SELECT flavor FROM first_half ORDER BY total_order desc, shipment_id;
 	
-	
+FindAnimalsWithelInTheirName
+	- SELECT animal_id, name FROM animal_ins WHERE animal_type = 'dog' and name LIKE '%el%' ORDER BY name;
+		
+Handling Null
+	- SELECT animal_type, IF(name is null, "No name", name) AS "name", sex_upon_intake 
+		FROM animal_ins
+		ORDER BY animal_id;
 		
