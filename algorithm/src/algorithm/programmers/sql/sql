@@ -38,3 +38,14 @@ Handling Null
 FindingOutIfYou'veBeenNeutered
 	- SELECT animal_id, name, if(sex_upon_intake like '%Neutered%' or sex_upon_intake like '%Spayed%', 'O', 'X') as "중성화" 
 		FROM animal_ins ORDER BY animal_id;
+PrintInformationOnTheMostExpensiveFood
+	- SELECT * FROM food_product WHERE price = (SELECT max(price) FROM food_product);
+	
+FindingTheNumberOfProductsPerCategory
+	- SELECT substr(product_code, 1, 2) "category", count(*) "products" FROM product 
+    GROUP BY substr(product_code, 1, 2)
+    order by category;
+    
+FindingLucyAndElla
+	- SELECT animal_id, name, sex_upon_intake FROM animal_ins WHERE name IN ('Lucy', 'Ella', 'Pickle', 'Rogan', 'Sabrina', 'Mitty');
+
