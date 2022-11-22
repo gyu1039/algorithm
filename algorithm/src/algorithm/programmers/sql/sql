@@ -49,3 +49,7 @@ FindingTheNumberOfProductsPerCategory
 FindingLucyAndElla
 	- SELECT animal_id, name, sex_upon_intake FROM animal_ins WHERE name IN ('Lucy', 'Ella', 'Pickle', 'Rogan', 'Sabrina', 'Mitty');
 
+OutputAListOfFemalePatientsUnderTheAgeOf12
+	- SELECT pt_name, pt_no, gend_cd, age, if(tlno is null, "NONE", tlno) as "tlno" FROM patient WHERE gend_cd = 'W' and age <= 12 ORDER BY age desc, pt_name;
+
+
