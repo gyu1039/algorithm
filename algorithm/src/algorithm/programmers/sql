@@ -76,4 +76,26 @@ OutputOrderStatusByClassifyingByConditions
     	when (date_format(out_date, '%Y%m%d') <= '20220501') then "출고완료"
     	else "출고대기" END AS "출고여부"  
 	FROM food_order
-	ORDER BY order_id
+	ORDER BY order_id;
+
+OutputTheRestaurantInformationWithTheMostFavorites
+	- SELECT food_type, rest_id, rest_name, favorites 
+	FROM rest_info a
+	GROUP BY food_type, rest_id, rest_name, favorites
+	HAVING favorites = (SELECT MAX(favorites) 
+                  FROM rest_info b 
+                  GROUP BY food_type
+                  HAVING a.food_type = b.food_type)
+	ORDER BY food_type desc;
+	
+	- SELECT A.food_type, A.rest_id, A.rest_name, A.favorites
+		FROM rest_info A JOIN ( 
+			SELECT food_type, max(favorites) as favorites
+			FROM rest_info
+			GROUP BY FOOD_TYPE) B On A.favorites = B.favorites AND A.food_type = B.food_type
+		ORDER BY food_type desc; 
+		
+
+		
+		
+	
