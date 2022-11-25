@@ -95,7 +95,10 @@ OutputTheRestaurantInformationWithTheMostFavorites
 			GROUP BY FOOD_TYPE) B On A.favorites = B.favorites AND A.food_type = B.food_type
 		ORDER BY food_type desc; 
 		
-
-		
+FindTheNumberOfProductsByPriceRange
+	- SELECT truncate(price, -4) as "PRICE_GROUP", count(*) as "PRODUCTS" 
+	FROM product
+	GROUP BY price_group
+	ORDER BY 1;
 		
 	
