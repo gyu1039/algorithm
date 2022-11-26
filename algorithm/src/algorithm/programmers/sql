@@ -101,4 +101,9 @@ FindTheNumberOfProductsByPriceRange
 	GROUP BY price_group
 	ORDER BY 1;
 		
+TotalIceCreamOrderQuantitySeparatedByIngredients
+	- SELECT ingredient_type, sum(total_order) as "TOTAL_ORDER"
+	FROM first_half f left join icecream_info i on f.flavor = i.flavor
+	GROUP BY ingredient_type
+	ORDER BY 2;
 	
