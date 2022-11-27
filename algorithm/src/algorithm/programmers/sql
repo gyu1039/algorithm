@@ -106,4 +106,10 @@ TotalIceCreamOrderQuantitySeparatedByIngredients
 	FROM first_half f left join icecream_info i on f.flavor = i.flavor
 	GROUP BY ingredient_type
 	ORDER BY 2;
-	
+
+SeeTotalFoodSalesForMay
+	- SELECT p.product_id, product_name, sum(price * amount) "total_sales"
+		FROM food_product p left join food_order o on p.product_id = o.product_id
+		WHERE date_format(produce_date, '%Y%m') = 202205
+		GROUP BY p.product_id
+		ORDER BY 3 desc, 1;
