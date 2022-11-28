@@ -122,3 +122,10 @@ ViewInformationOnTheMostExpensiveFoodsByFoodCategory
   		  FROM food_product
    		 GROUP BY category) and category in ('과자', '국', '김치', '식용유')
 		ORDER BY price desc;
+
+GetRepurchasedProductsAndMemberList
+	- SELECT user_id, product_id
+		FROM online_sale
+		GROUP BY user_id, product_id
+		HAVING count(product_id) > 1
+		ORDER BY user_id, product_id desc;
