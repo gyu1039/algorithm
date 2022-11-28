@@ -113,3 +113,12 @@ SeeTotalFoodSalesForMay
 		WHERE date_format(produce_date, '%Y%m') = 202205
 		GROUP BY p.product_id
 		ORDER BY 3 desc, 1;
+		
+ViewInformationOnTheMostExpensiveFoodsByFoodCategory
+	- SELECT category, price, product_name
+		FROM food_product
+		WHERE price in
+  		  (select max(price)
+  		  FROM food_product
+   		 GROUP BY category) and category in ('과자', '국', '김치', '식용유')
+		ORDER BY price desc;
