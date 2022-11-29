@@ -129,3 +129,18 @@ GetRepurchasedProductsAndMemberList
 		GROUP BY user_id, product_id
 		HAVING count(product_id) > 1
 		ORDER BY user_id, product_id desc;
+		
+ShoppingCartWithMilkAndYogurt
+	- SELECT cart_id
+		FROM cart_products
+		WHERE name in ('Milk', 'Yogurt')
+		GROUP BY cart_id
+		HAVING COUNT(Distinct(name)) > 1
+		ORDER BY cart_id;
+		
+PlacesOwnedByheavyUsers
+	- SELECT id, name, host_id
+		FROM places
+		WHERE host_id in (select b.host_id FROM places b GROUP BY b.host_id HAVING count(b.host_id) > 1) 
+		ORDER BY id
+		
