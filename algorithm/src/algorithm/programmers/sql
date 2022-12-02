@@ -152,3 +152,8 @@ OutputAListOfRestaurantsInSeoul
                 GROUP BY r.rest_id) c on i.rest_id = c.rest_id
 		WHERE i.address like '서울%'
 		ORDER BY score desc, favorites desc;
+		
+ChooseIceCreamMadeWithFruit
+	- SELECT h.flavor FROM first_half h natural join icecream_info i
+		WHERE h.total_order > 3000 and i.ingredient_type = 'fruit_based'
+		ORDER BY h.total_order desc;

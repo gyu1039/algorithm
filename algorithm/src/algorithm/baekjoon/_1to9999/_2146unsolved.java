@@ -26,17 +26,15 @@ public class _2146unsolved {
 		for(int i=1; i<=N; i++) {
 			
 			StringTokenizer st = new StringTokenizer(br.readLine());
-			
 			for(int j=1; j<=N; j++) {
-				
 				land[i][j] = Integer.parseInt(st.nextToken()) - 1;
 			}
 		}
 		
-		dfs(1, 1);
+		int cnt = howManyIslandAreThere(1, 1);
 	}
 
-	private static void dfs(int x, int y) {
+	private static int howManyIslandAreThere(int x, int y) {
 
 		for(int i=0; i<4; i++) {
 			
@@ -48,7 +46,8 @@ public class _2146unsolved {
 				
 			}
 		}
-		
+
+		return 0;
 	}
 	
 	
