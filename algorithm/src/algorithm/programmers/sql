@@ -164,3 +164,12 @@ GetMembersWhoBuyProductsByYearMonthAndGender
 		WHERE gender is not null
 		GROUP BY year(sales_date), month(sales_date), gender
 		ORDER BY year, month, gender;
+		
+SeeTheMostOrderedIceCream
+	- SELECT flavor
+	FROM (SELECT flavor, total_order FROM first_half
+  		  union 
+     	select flavor, total_order from july) total
+	GROUP BY flavor
+	ORDER BY sum(total_order) desc
+	limit 3;
