@@ -6,25 +6,14 @@ public class HIndex {
 
 	public static int solution(int[] citations) {
 
-		Arrays.sort(citations);
-		int numberOfPapers = citations.length;
-
-		int[] counter = new int[citations[numberOfPapers-1]+1];
-		for(int i=0; i<numberOfPapers; i++) {
-			counter[citations[i]]++;
-		}
-
-		int remainder = 0;
 		int answer = 0;
-		for(int h=0; h<=citations[numberOfPapers-1]; h++) {
-			if(h <= numberOfPapers - remainder &&
-					remainder <= h) {
-				answer = h;
-			}
-			remainder += counter[h];
-		}
-		
-		return answer;
+        Arrays.sort(citations);
+        int numberOfPapers = citations.length;
+        for(int h=0; h<numberOfPapers; h++){
+            int smaller = Math.min(citations[h], numberOfPapers-h);
+            answer = Math.max(answer, smaller);
+        }
+        return answer;
 	}
 	
 	public static void main(String[] args) {
