@@ -1,3 +1,5 @@
+SELECT name FROM employee WHERE SALARY > 2000 AND months < 10 ORDER BY employee_id asc;
+
 SELECT name FROM employee ORDER BY name;
 
 SELECT name FROM students WHERE marks > 75 ORDER BY right(name, 3), id;
