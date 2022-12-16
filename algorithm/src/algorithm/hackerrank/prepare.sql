@@ -1,3 +1,11 @@
+SELECT CASE 
+    WHEN A+B<=C or B+C<=A or A+C<=B THEN 'Not A Triangle'
+    WHEN A=B and B=C THEN 'Equilateral'
+    WHEN (A=B and B!=C) or (B=C and C!=A) or (A=C and A!=B) THEN 'Isosceles'
+    WHEN A<>B and B<>C and C<>A THEN 'Scalene'
+    END
+FROM triangles;
+
 SELECT name FROM employee WHERE SALARY > 2000 AND months < 10 ORDER BY employee_id asc;
 
 SELECT name FROM employee ORDER BY name;
