@@ -1,3 +1,6 @@
+SELECT concat(name, '(', left(occupation, 1),')') FROM occupations ORDER BY name;
+SELECT concat('There are a total of ', count(occupation), ' ', lower(occupation), 's.') FROM occupations GROUP BY occupation ORDER BY count(occupation);
+
 SELECT CASE 
     WHEN A+B<=C or B+C<=A or A+C<=B THEN 'Not A Triangle'
     WHEN A=B and B=C THEN 'Equilateral'
