@@ -1,3 +1,10 @@
+AggregateBookSalesVolumeByCategory
+    - SELECT CATEGORY, sum(sales) as "TOTAL_SALES"
+      FROM book NATURAL JOIN book_sales
+      WHERE date_format(sales_date, '%Y%m') = '202201'
+      GROUP BY CATEGORY
+      ORDER BY category;
+
 ViewUncancelledCareAppointments
 	- SELECT apnt_no, pt_name, p.pt_no, a.mcdp_cd, dr_name, apnt_ymd
 		FROM patient p, doctor d, appointment a 
