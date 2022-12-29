@@ -1,3 +1,15 @@
+OutputAListOfBooksThatMeetTheConditions
+    - SELECT BOOK_ID, date_format(PUBLISHED_DATE, '%Y-%m-%d') as "PUBLISHED_DATE"
+    FROM BOOK
+    WHERE category = '인문' AND year(published_date) = '2021'
+    ORDER BY 2;
+
+OutPutAListOfBooksAndAuthorsThatMeetTheConditions
+    - SELECT BOOK_ID, AUTHOR_NAME, date_format(PUBLISHED_DATE, '%Y-%m-%d') as "PUBLISHED_DATE"
+      FROM book natural join author
+      WHERE category = '경제'
+      ORDER BY published_date
+
 AggregateBookSalesVolumeByCategory
     - SELECT CATEGORY, sum(sales) as "TOTAL_SALES"
       FROM book NATURAL JOIN book_sales
