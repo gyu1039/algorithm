@@ -1,3 +1,7 @@
+SELECT avg(population) FROM city WHERE district = 'California';
+
+SELECT sum(population) FROM city WHERE district = 'California';
+
 SELECT count(*) FROM city WHERE population > 100000;
 
 SELECT concat(name, '(', left(occupation, 1),')') FROM occupations ORDER BY name;
