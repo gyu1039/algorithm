@@ -1,3 +1,5 @@
+SELECT floor(avg(population)) FROM city;
+
 SELECT avg(population) FROM city WHERE district = 'California';
 
 SELECT sum(population) FROM city WHERE district = 'California';
