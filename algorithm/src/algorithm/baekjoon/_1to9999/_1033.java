@@ -86,27 +86,26 @@ public class _1033 {
 	
 		return 1;
 	}
-}
 
-class cNode {
-	
-	int b, p, q;
-	
-	public cNode(int b, int p, int q) {
-		this.b = b;
-		this.p = p;
-		this.q = q;
-	}
-	
-	public int getB() {
-		return b;
-	}
-	
-	public int getP() {
-		return p;
-	}
-	
-	public int getQ() {
-		return q;
+	static class cNode {
+		int b, p, q;
+
+		public cNode(int b, int p, int q) {
+			this.b = b;
+			this.p = p;
+			this.q = q;
+		}
+
+		public int getB() {
+			return b;
+		}
+
+		public int getP() {
+			return p;
+		}
+
+		public int getQ() {
+			return q;
+		}
 	}
 }

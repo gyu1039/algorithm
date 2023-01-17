@@ -1,3 +1,7 @@
+SELECT round(avg(salary)) - round(avg(replace(salary, '0', ''))) FROM employees;
+
+SELECT Max(population) - min(population) FROM city;
+
 SELECT sum(population) FROM city WHERE countrycode = 'JPN';
 
 SELECT floor(avg(population)) FROM city;
