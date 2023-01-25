@@ -7,6 +7,10 @@ import java.util.StringTokenizer;
 
 public class _14500unsolved {
 
+    static int[][] arr;
+    static boolean[][] isVisited;
+    static int[] directionX = {0, 1, 0, -1};
+    static int[] directionY = {-1, 0, 1, 0};
 
     public static void main(String[] args) throws IOException {
 
@@ -16,26 +20,27 @@ public class _14500unsolved {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        int[][] arr = new int[N][M];
+        arr = new int[N+2][M+2];
+        isVisited = new boolean[N+2][M+2];
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 1; i <= N; i++) {
             st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < M; j++) {
+            for (int j = 1; j <= M; j++) {
                 arr[i][j] = Integer.parseInt(st.nextToken());
             }
         }
         br.close();
 
         int result = 0;
-        for(int i=0; i<N; i++) {
-            for(int j=0; j<M; j++) {
 
+        for(int row=1; row<=N; row++) {
+            for(int col=1; col<=M; col++) {
 
 
             }
         }
+
         System.out.println(result);
     }
-
 
 }
