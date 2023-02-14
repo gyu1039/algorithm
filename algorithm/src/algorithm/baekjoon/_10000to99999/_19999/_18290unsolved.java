@@ -1,4 +1,4 @@
-package algorithm.baekjoon._10000to99999;
+package algorithm.baekjoon._10000to99999._19999;
 
 import java.io.BufferedReader;
 import java.io.IOException;
