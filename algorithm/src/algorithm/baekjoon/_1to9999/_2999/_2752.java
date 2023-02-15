@@ -14,7 +14,7 @@ public class _2752 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         br.close();
-        arr = new int[3];
+        arr = new int[5];
 
         for(int i=0; i<arr.length; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
@@ -43,8 +43,8 @@ public class _2752 {
 
     private static void merge(int start, int mid, int end) {
 
-        int p = start, q = mid + 1, i = 0;
-        int[] tmp = new int[end - start + 1];
+        int p = start, q = mid + 1, i = start;
+        int[] tmp = new int[arr.length];
 
         while(p <= mid && q <= end) {
             if(arr[p] < arr[q]) {
@@ -61,7 +61,7 @@ public class _2752 {
             tmp[i++] = arr[q++];
         }
 
-        for(int j=0; j<tmp.length; j++) {
+        for(int j=start; j<=end; j++) {
             arr[j] = tmp[j];
         }
     }
