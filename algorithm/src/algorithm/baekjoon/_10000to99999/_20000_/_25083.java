@@ -1,4 +1,4 @@
-package algorithm.baekjoon._10000to99999;
+package algorithm.baekjoon._10000to99999._20000_;
 
 public class _25083 {
 

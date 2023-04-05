@@ -1,70 +1,78 @@
-package algorithm.baekjoon._10000to99999;
+package algorithm.baekjoon._10000to99999._20000_;
 
-import java.beans.Visibility;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class _24479 {
+public class _24445 {
 	
-	static PriorityQueue<Integer>[] graph;
-	static int[] nthVisited;
+	static List<Integer>[] graph;
 	static int order = 1;
-	static int N;
+	static int[] nthVisited;
 	
 	public static void main(String[] args) throws IOException {
-		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
-		N = Integer.parseInt(st.nextToken());
+		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
 		int R = Integer.parseInt(st.nextToken());
-
-		graph = new PriorityQueue[N + 1];
+	
+		graph = new ArrayList[N+1];
 		nthVisited = new int[N+1];
 		
-		int tmp = M;
-		while(tmp-- > 0) {
+		for(int i=1; i<=N; i++) {
+			graph[i] = new ArrayList<>();
+		}
+		
+		while(M-- > 0) {
 			st = new StringTokenizer(br.readLine());
+			
 			int u = Integer.parseInt(st.nextToken());
 			int v = Integer.parseInt(st.nextToken());
-			
-			if(graph[u] == null) {
-				graph[u] = new PriorityQueue<>();
-			}
-			
-			if(graph[v] == null) {
-				graph[v] = new PriorityQueue<Integer>();
-			}
 			
 			graph[u].add(v);
 			graph[v].add(u);
 		}
-
-		dfs(R);
+		
+		for(int i=1; i<=N; i++) {
+			Collections.sort(graph[i], Collections.reverseOrder());
+		}
+		
+		bfs(R);
 		
 		StringBuilder sb = new StringBuilder();
+		
 		for(int i=1; i<=N; i++) {
 			sb.append(nthVisited[i]).append("\n");
 		}
+		
 		System.out.println(sb);
 	}
-	
-	public static void dfs(int x) {
+
+	private static void bfs(int r) {
 		
-		nthVisited[x] = order++;
+		nthVisited[r] = order++;
+		Queue<Integer> q = new LinkedList<>();
+		q.add(r);
 		
-		while(graph[x] != null && graph[x].size() != 0) {
+		while(q.size() > 0) {
 			
-			int v = graph[x].poll();
+			int n = q.poll();
 			
-			if(nthVisited[v] == 0) {
-				dfs(v);
+			for(int x : graph[n]) {
+				
+				if(nthVisited[x] == 0) {
+					nthVisited[x] = order++;
+					q.add(x);
+				}
 			}
 		}
 	}

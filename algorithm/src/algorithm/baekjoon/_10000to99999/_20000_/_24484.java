@@ -1,13 +1,14 @@
-package algorithm.baekjoon._10000to99999;
+package algorithm.baekjoon._10000to99999._20000_;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class _24483 {
+public class _24484 {
 	
 	static int depth;
 	static PriorityQueue<Integer>[] graph;
@@ -35,11 +36,11 @@ public class _24483 {
 			int v = Integer.parseInt(st.nextToken());
 			
 			if(graph[u] == null) {
-				graph[u] = new PriorityQueue<>();
+				graph[u] = new PriorityQueue<>(Collections.reverseOrder());
 			}
 			
 			if(graph[v] == null) {
-				graph[v] = new PriorityQueue<>();
+				graph[v] = new PriorityQueue<>(Collections.reverseOrder());
 			}
 			
 			graph[u].add(v);
