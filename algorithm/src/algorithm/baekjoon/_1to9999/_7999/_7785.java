@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
 
-public class _7785 {
+public class _7785{
 
     public static void main(String[] args) throws IOException {
 
