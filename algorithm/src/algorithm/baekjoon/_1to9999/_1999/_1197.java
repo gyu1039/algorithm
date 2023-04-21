@@ -10,8 +10,8 @@ import java.util.StringTokenizer;
 
 public class _1197 {
 
-    static int[] parent;
-    static List<String> graph;
+    static Parentsize[] parentSize;
+    static List<UV> graph;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,38 +19,37 @@ public class _1197 {
         int V = Integer.parseInt(st.nextToken());
         int E = Integer.parseInt(st.nextToken());
 
-        parent = new int[V+1];
+        parentSize = new Parentsize[V+1];
         graph = new ArrayList<>(E);
 
         for(int i=1; i<=V; i++) {
-            parent[i] = i;
+            parentSize[i] = new Parentsize(i, 1);
         }
 
         for(int i=0; i<E; i++) {
-            graph.add(br.readLine());
+            st = new StringTokenizer(br.readLine());
+            graph.add(new UV(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
         }
 
-        Collections.sort(graph, (s1, s2) -> {
-            return Integer.parseInt(s1.split(" ")[2]) > Integer.parseInt(s2.split(" ")[2]) ? 1 : -1;
+        Collections.sort(graph, (e1, e2) -> {
+            return e1.w > e2.w ? 1 : -1;
         });
 
         int count = 0;
         int i = 0;
         int result = 0;
         while(count != V-1) {
-            String s = graph.get(i);
+            UV uv = graph.get(i);
 
-            st = new StringTokenizer(s);
-            int a = Integer.parseInt(st.nextToken());
-            int b = Integer.parseInt(st.nextToken());
+            int a = uv.a;
+            int b = uv.b;
 
             int pa = findSet(a);
             int pb = findSet(b);
             if(pa != pb) {
-                result += Integer.parseInt(st.nextToken());
+                result += uv.w;
                 union(pa, pb);
                 count++;
-
             }
             i += 1;
         }
@@ -60,14 +59,44 @@ public class _1197 {
 
     private static void union(int pa, int pb) {
 
+        if (parentSize[pa].size > parentSize[pb].size) {
+            parentSize[pb].parent = parentSize[pa].parent;
+            parentSize[pa].size += parentSize[pb].size;
+
+        } else {
+
+            parentSize[pa].parent = parentSize[pb].parent;
+            parentSize[pb].size += parentSize[pb].size;
+        }
     }
 
-    public static int findSet(int x) {
+    private static int findSet(int x) {
 
-        while (x != parent[x]) {
-            x = parent[x];
+        while (x != parentSize[x].parent) {
+            x = parentSize[x].parent;
         }
 
         return x;
     }
+
+    static class UV {
+        int a, b, w;
+
+        public UV(int a, int b, int w) {
+            this.a = a;
+            this.b = b;
+            this.w = w;
+        }
+    }
+
+    static class Parentsize {
+        int parent;
+        int size;
+
+        public Parentsize(int parent, int size) {
+            this.parent = parent;
+            this.size = size;
+        }
+    }
+
 }
