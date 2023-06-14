@@ -16,46 +16,32 @@ public class _1946 {
         StringBuilder sb = new StringBuilder();
         while(T-- > 0) {
             int N = Integer.parseInt(br.readLine());
-            E[] ar = new E[N];
+            int[] ar = new int[N+1];
+
             for(int i=0; i<N; i++) {
                 StringTokenizer st = new StringTokenizer(br.readLine());
-                ar[i] = new E(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+                int n1 = Integer.parseInt(st.nextToken());
+                int n2 = Integer.parseInt(st.nextToken());
+                ar[n1] = n2;
             }
 
-            Arrays.sort(ar);
 
             int count = 0;
-            outer: for(int i=0; i<N; i++) {
-                E cur = ar[i];
-                for(int j=0; j<i; j++) {
-                    E vs = ar[j];
-                    if(cur.interviewTestResult > vs.interviewTestResult) {
-                        continue outer;
-                    }
+            int min = Integer.MAX_VALUE;
+            for(int i=1; i<=N; i++) {
+
+                if(ar[i] < min) {
+                    count += 1;
+                    min = ar[i];
                 }
-                count++;
+
             }
 
             sb.append(count).append("\n");
         }
 
+        br.close();
         System.out.println(sb);
     }
 
-
-    static class E implements Comparable<E> {
-
-        int documentScreeningResult;
-        int interviewTestResult;
-
-        E(int documentScreeningResult, int interviewTestResult) {
-            this.documentScreeningResult = documentScreeningResult;
-            this.interviewTestResult = interviewTestResult;
-        }
-
-        @Override
-        public int compareTo(E o) {
-            return this.documentScreeningResult > o.documentScreeningResult ? 1 : -1;
-        }
-    }
 }
