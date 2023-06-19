@@ -4,55 +4,46 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.StringTokenizer;
+import java.util.HashMap;
+import java.util.Map;
 
 public class _2565 {
 
-    static class Line {
-
-        int a, b;
-
-        public Line(int a, int b) {
-            this.a = a;
-            this.b = b;
-        }
-    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
 
-        Line[] arr = new Line[n];
+        int[] input = new int[n];
+        Map<Integer, Integer> map = new HashMap<>();
 
         for(int i=0; i<n; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            arr[i] = new Line(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
-        }
+            String[] tmp = br.readLine().split(" ");
+            int a = Integer.parseInt(tmp[0]);
+            int b = Integer.parseInt(tmp[1]);
 
-        Arrays.sort(arr, Comparator.comparingInt(a -> a.a));
+            input[i] = a;
+            map.put(a, b);
+        }
+        br.close();
+        Arrays.sort(input);
 
         int[] dp = new int[n];
-        dp[0] = 0;
-        for(int cur=1; cur<dp.length; cur++) {
+        int max = 0;
 
-            if(arr[cur].b < arr[cur-1].b) {
-                dp[cur] = 1;
-                int count = 0;
-                for(int prev=0; prev<cur; prev++){
-                    if(arr[cur].b < arr[prev].b) {
-                        count += 1;
-                        continue;
-                    }
-                    break;
+        for(int i=0; i<n; i++) {
+            dp[i] = 1;
+
+            for(int j=0; j<i; j++) {
+                if(map.get(input[i]) > map.get(input[j]) && dp[i] <= dp[j]) {
+                    dp[i] = dp[j] + 1;
                 }
-
-                dp[cur] = Math.max(dp[cur], count);
-            } else {
-                dp[cur] = dp[cur-1];
             }
+
+            max = max < dp[i] ? dp[i] : max;
         }
 
-        System.out.println(dp[n-1]);
+
+        System.out.println(n - max);
     }
 }
