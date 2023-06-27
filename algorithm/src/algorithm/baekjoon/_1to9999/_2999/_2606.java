@@ -20,43 +20,33 @@ public class _2606 {
 		int pairN = Integer.parseInt(br.readLine());
 
 		list = new ArrayList[n+1];
+		for(int i=1; i<=n; i++) {
+			list[i] = new ArrayList<>();
+		}
 
-		StringTokenizer st;
 		for(int i=0; i<pairN; i++) {
-			st = new StringTokenizer(br.readLine());
+			StringTokenizer st = new StringTokenizer(br.readLine());
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
-
-			if(list[a] == null) {
-				list[a] = new ArrayList<>();
-			}
-
-			if(list[b] == null) {
-				list[b] = new ArrayList<>();
-			}
 
 			list[a].add(b);
 			list[b].add(a);
 		}
 
 		visited = new boolean[n+1];
+		visited[1] = true;
 		dfs(1);
 
-		System.out.println(cnt-1);
+		System.out.println(cnt);
 	}
 
 	public static void dfs(int c) {
 
-		if(visited[c]) {
-			return;
-		}
-		
-		visited[c] = true;
-		cnt++;
-
 		for(int i : list[c]) {
 
 			if(!visited[i]) {
+				visited[i] = true;
+				cnt++;
 				dfs(i);
 			}
 		}
