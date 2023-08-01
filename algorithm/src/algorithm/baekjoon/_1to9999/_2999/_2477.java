@@ -15,21 +15,34 @@ public class _2477 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int k = Integer.parseInt(br.readLine());
 
-        List<Integer> list = new ArrayList<>();
-        Map<Integer, Integer> map = new HashMap<>();
-        int a = 1;
+        int[] arr = new int[6];
         for(int i=0; i<6; i++) {
-            String[] input = br.readLine().split(" ");
-            int d = Integer.parseInt(input[0]);
-            int l = Integer.parseInt(input[1]);
+            arr[i] = Integer.parseInt(br.readLine().split(" ")[1]);
+        }
+        br.close();
 
-            list.add(l);
-            if(map.containsKey(d)) {
+        int wVal, hVal, xIdx, yIdx, xVal, yVal;
+        wVal = hVal = 0;
+        xIdx = yIdx = -1;
 
+        for(int i=0; i<arr.length; i+=2) {
+
+            int l = arr[i];
+            if(hVal < l) {
+                hVal = l;
+                xIdx = i;
             }
-            map.put(d, map.getOrDefault(d, 0) + l);
+
+            l = arr[i+1];
+            if(wVal < l) {
+                wVal = l;
+                yIdx = i+1;
+            }
         }
 
-        System.out.println((map.get(1) * map.get(4) - a) * k);
+        xVal = arr[(xIdx + 3) % arr.length];
+        yVal = arr[(yIdx + 3) % arr.length];
+
+        System.out.println(k * (wVal*hVal - xVal*yVal));
     }
 }

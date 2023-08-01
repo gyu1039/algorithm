@@ -7,35 +7,32 @@ import java.io.InputStreamReader;
 public class _5525 {
 
     public static void main(String[] args) throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         int m = Integer.parseInt(br.readLine());
-        String target = br.readLine();
+        char[] ar = br.readLine().toCharArray();
         br.close();
 
-        String pattern = "I" + "OI".repeat(n);
-        int[] pi = new int[pattern.length()];
-        int begin = 0;
-        for(int right=1; right<pi.length; right++) {
+        int answer = 0;
+        int accumulation = 0;
+        for(int i=2; i<m; i++) {
 
-            while (begin > 0 && pattern.charAt(begin) != pattern.charAt(right)) {
-                begin = pi[begin-1];
+            if (ar[i] == 'I' && ar[i - 1] == 'O' && ar[i - 2] == 'I') {
+                accumulation += 1;
+                i += 1;
+            } else {
+                accumulation = 0;
             }
 
-            if(pattern.charAt(begin) == pattern.charAt(right)) {
-                begin += 1;
-                pi[right] = begin;
+            if(accumulation >= n) {
+                answer += 1;
             }
         }
 
-        int count = 0;
-        begin = 0;
-        for(int right=0; right<m; right++) {
+        System.out.println(answer);
 
 
-        }
-
-        System.out.println(count);
 
     }
 }

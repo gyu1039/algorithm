@@ -14,27 +14,54 @@ public class _16928 {
         int n = Integer.parseInt(input[0]);
         int m = Integer.parseInt(input[1]);
 
-        Map<Integer, Integer> ladders = new HashMap<>();
+        boolean[] isVisited = new boolean[101];
+
+        Map<Integer, Integer> jumps = new HashMap<>();
         for(int i=0; i<n; i++) {
             input = br.readLine().split(" ");
-            ladders.put(Integer.parseInt(input[0]), Integer.parseInt(input[1]));
+            int u = Integer.parseInt(input[0]);
+            int v = Integer.parseInt(input[1]);
+
+            jumps.put(u, v);
         }
 
-        Map<Integer, Integer> snakes = new HashMap<>();
         for(int i=0; i<m; i++) {
             input = br.readLine().split(" ");
-            snakes.put(Integer.parseInt(input[0]), Integer.parseInt(input[1]));
+            int u = Integer.parseInt(input[0]);
+            int v = Integer.parseInt(input[1]);
+
+            jumps.put(u, v);
         }
         br.close();
 
-        int answer = 0;
-        int start = 1;
-        while(start < 100) {
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[] {1, 0});
+        isVisited[1] = true;
 
+        while(!q.isEmpty()) {
+            int[] ar = q.poll();
+            int loc = ar[0];
+            int count = ar[1];
+
+            if(loc == 100) {
+                System.out.println(count);
+                break;
+            }
+
+            for(int i=1; i<=6; i++) {
+                if(loc + i < isVisited.length && !isVisited[loc + i]) {
+
+                    isVisited[loc + i] = true;
+                    if (jumps.containsKey(loc + i)) {
+                        q.add(new int[]{jumps.get(loc + i), count + 1});
+                        isVisited[jumps.get(loc + i)] = true;
+
+                    } else {
+                        q.add(new int[]{loc + i, count + 1});
+
+                    }
+                }
+            }
         }
-
-
-
-        System.out.println(answer);
     }
 }

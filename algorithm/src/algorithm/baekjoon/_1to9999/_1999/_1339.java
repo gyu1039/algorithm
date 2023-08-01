@@ -7,68 +7,42 @@ import java.util.*;
 
 public class _1339 {
 
-    static class Order {
-
-        char c;
-        int order;
-        int count;
-
-        public Order(char c, int order, int count) {
-            this.c = c;
-            this.order = order;
-            this.count = count;
-        }
-
-
-    }
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
 
-        Map<Character, Order> table = new HashMap<>();
-        String[] words = new String[n];
+        String[] arr = new String[n];
         for(int i=0; i<n; i++) {
-            words[i] = br.readLine();
-            int len = words[i].length();
-
-            for(int j=0; j<len; j++) {
-                char c = words[i].charAt(j);
-
-                if(!table.containsKey(c)) {
-//                    System.out.println(c +", " + (j+1));
-                    table.put(c, new Order(c, len-j, 1));
-                    continue;
-                }
-
-                Order cur = table.get(c);
-                cur.count += 1;
-                cur.order = Math.max(cur.order, len-j);
-            }
+            arr[i] = br.readLine();
         }
         br.close();
 
-        List<Order> values = new ArrayList<>(table.values());
-        Collections.sort(values, (c1, c2) -> c1.order != c2.order ? Integer.compare(c2.order, c1.order)
-                : Integer.compare(c2.count, c1.count));
+        int[] num = new int[26];
+        for(int i=0; i<n; i++) {
+            int len = arr[i].length();
+            int digit = (int)Math.pow(10, len-1);
 
-        int num = 9;
-        values.stream().forEach(v -> System.out.println(v.c + ", " + v.order + ", " + v.count));
-        for(Order cur : values) {
-            for(int i=0; i<n; i++) {
-                String s = words[i];
-                words[i] = s.replace(cur.c, Character.forDigit(num, 10));
-                System.out.println(words[i]);
+            for(int j=0; j<len; j++) {
+                num[arr[i].charAt(j) - 65] += digit;
+                digit /= 10;
             }
-            n -= 1;
         }
 
+        Arrays.sort(num);
+        int val = 9;
         int answer = 0;
-        for(String s : words) {
-            answer += Integer.parseInt(s);
+        for(int i=num.length-1; i>=0; i--) {
+
+            if(num[i] == 0) {
+                break;
+            }
+
+            answer += num[i]*val;
+            val -= 1;
         }
 
         System.out.println(answer);
+
 
     }
 }
