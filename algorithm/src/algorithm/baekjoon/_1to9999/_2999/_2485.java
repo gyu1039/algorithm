@@ -25,7 +25,7 @@ public class _2485 {
 
         int g = difference[0];
 
-        for(int i=1; i<N-2; i++) {
+        for(int i=1; i<difference.length; i++) {
             g = gcd(difference[i], g);
         }
 
